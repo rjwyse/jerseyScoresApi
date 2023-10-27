@@ -4,6 +4,7 @@ const cors = require('cors')
 require('dotenv').config()
 const userRouter = require('./routes/users')
 
+
 const SERVERDEVPORT = 4741
 const CLIENTDEVPORT = 5173
 
