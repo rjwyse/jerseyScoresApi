@@ -19,7 +19,24 @@ const PORT = process.env.PORT || SERVERDEVPORT
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+app.use(require('./config/checkToken'));
+
 app.use('/users', userRouter)
+
+app.use('/users', require('./routes/users'));
+
+const ensureLoggedIn = require('./config/ensureLoggedIn');
+app.use('/items', ensureLoggedIn, require('./routes/items'));
+app.use('/orders', ensureLoggedIn, require('./routes/orders'));
+
+
+
+app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
+  
+
+
 
 app.listen(PORT, () => {
     console.log('listening on port ' + PORT)
