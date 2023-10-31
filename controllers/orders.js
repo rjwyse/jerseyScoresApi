@@ -44,13 +44,16 @@ async function orders(req, res) {
 }
 
 async function deleteOrder(req, res) {
-  console.log("apple")
+  console.log(req.params.id)
   try {
-    const orderId = req.params.orderId;
-    await Order.findByIdAndDelete(orderId);
-    res.status(200).json({ message: 'Order deleted successfully' });
+    const deletedOrder = await Order.findByIdAndDelete(req.params.id);
+    console.log(deleteOrder)
+    if (!deletedOrder) {
+      return res.status(405).json({ message: 'Order not found' });
+    }
+    res.json(deletedOrder);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Failed to delete order' });
+    console.error('Error deleting order:', error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 }
