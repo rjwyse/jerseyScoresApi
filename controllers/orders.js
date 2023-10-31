@@ -44,9 +44,9 @@ async function orders(req, res) {
 }
 
 async function deleteOrder(req, res) {
-  console.log(req.params.id)
+  console.log(req.params)
   try {
-    const deletedOrder = await Order.findByIdAndDelete(req.params.id);
+    const deletedOrder = await Order.findByIdAndDelete(req.params.orderId);
     console.log(deleteOrder)
     if (!deletedOrder) {
       return res.status(405).json({ message: 'Order not found' });
