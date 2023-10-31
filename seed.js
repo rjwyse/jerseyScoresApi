@@ -18,7 +18,7 @@ const Item = require('./models/item');
 
   await Item.deleteMany({});
   const items = await Item.create([
-    {name: 'Detroit Red Wings', emoji: '🍔', category: categories[0], price: 209.99},
+    { name: 'Detroit Red Wings', emoji: L<img src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e0/Detroit_Red_Wings_logo.svg/1024px-Detroit_Red_Wings_logo.svg.png"/>, category: categories[0], price: 209.99 },
     {name: 'Boston Bruins', emoji: '🥪', category: categories[0], price: 209.99},
     {name: 'Toronto Maple Leafs', emoji: '🌭', category: categories[0], price: 209.99},
     {name: 'Tampa Bay Lightning', emoji: '🦀', category: categories[0], price: 209.99},

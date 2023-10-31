@@ -11,7 +11,11 @@ const lineItemSchema = new Schema({
   });
   
   lineItemSchema.virtual('extPrice').get(function () {
-    return this.qty * this.item.price;
+    if (this.item && this.item.price) {
+      console.log('Item:', this.item);
+      return this.qty * this.item.price;
+    }
+    return 0;
   });
 
 const orderSchema = new Schema({

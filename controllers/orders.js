@@ -6,6 +6,8 @@ module.exports = {
   addToCart,
   setItemQtyInCart,
   checkout,
+  orders,
+  deleteOrder,
 };
 
 // A cart is the unpaid order for a user
@@ -34,4 +36,21 @@ async function checkout(req, res) {
   cart.isPaid = true;
   await cart.save(); 
   res.json(cart);
+}
+
+async function orders(req, res) {
+    const orders =await Order.find({})
+    res.send(orders)
+}
+
+async function deleteOrder(req, res) {
+  console.log("apple")
+  try {
+    const orderId = req.params.orderId;
+    await Order.findByIdAndDelete(orderId);
+    res.status(200).json({ message: 'Order deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Failed to delete order' });
+  }
 }
