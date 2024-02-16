@@ -41,7 +41,7 @@ const orderSchema = new Schema({
 
   orderSchema.statics.getCart = function(userId) {
     // 'this' is bound to the model (don't use an arrow function)
-    // return the promise that resolves to a cart (the user's unpaid order)
+
     return this.findOneAndUpdate(
       { user: userId, isPaid: false },
       { user: userId },
